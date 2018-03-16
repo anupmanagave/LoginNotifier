@@ -24,12 +24,15 @@ zipc=j['zip_code']
 details='\nIP Address: '+str(ipadd)+'\nMAC ID:  '+str(macid)+'\nLocation:'+city+', '+str(zipc)+', '+state+'\nLattitude:('+str(lat)+'), Longitude:('+str(lon)+')'
 
 #Prepare msg
-msg='Subject: Alert!! Your PC has been logged in\n\nHello User,\nYour Lenovo PC has been accessed recently on '+mydate+' at '+mytime+'. Please find the details below:\nUser: '+uname+details;
+msg='Subject: Alert!! Your PC has been logged in\n\nHello User,\nYour PC has been accessed recently on '+mydate+' at '+mytime+'. Please find the details below:\nUser: '+uname+details;
 time.sleep(120)
 #Login to Mail and send
 conn=smtplib.SMTP('smtp.gmail.com',587)
 conn.ehlo()
+#Start encryption
 conn.starttls()
+#give credentials
 conn.login('***Gmail login ID goes here','your password goes here')
 conn.sendmail('Your gmail','Receiver email ID',msg)
+#End Connection
 conn.quit()
